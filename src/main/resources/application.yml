@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: get-users
+          uri: lb://MONTA-user-service
+          predicates:
+            - Path= /users
+            - Method= GET
+  application:
+    name: MONTA-Gateway
+
+
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8761/eureka
